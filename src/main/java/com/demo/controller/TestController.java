@@ -23,4 +23,12 @@ public class TestController {
         test.setName("mingcheng");
         return testMapper.insert(test);
     }
+    @ResponseBody
+    @RequestMapping("/test1")
+    public int test1(){
+        Test test = new Test();
+        test.setId(1);
+        test.setName("mingcheng");
+        return testMapper.insert(test);
+    }
 }

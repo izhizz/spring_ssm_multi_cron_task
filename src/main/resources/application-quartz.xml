@@ -12,21 +12,20 @@
 
     <!-- 定义一个任务类 -->
     <bean id="MyJob" class="com.demo.service.MyjobServiceImpl"></bean>
-
     <!-- jobDetail -->
     <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="MyJob"></property>
         <property name="targetMethod" value="execute"></property>
         <property name="concurrent" value="false" /><!-- 作业不并发调度  -->
     </bean>
-
     <!-- 定义trigger 触发器 -->
     <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="jobDetail"></property>
         <property name="cronExpression" value="0/3 * * * * ? "></property>
     </bean>
-
     <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <!--需要overwrite已经存在的job，如果需要动态的修改已经存在的job，就需要设置为true，否则会以数据库中已经存在的为准-->
+        <property name="overwriteExistingJobs" value="true" />
         <property name="triggers">
             <list>
                 <ref bean="cronTrigger"/>
