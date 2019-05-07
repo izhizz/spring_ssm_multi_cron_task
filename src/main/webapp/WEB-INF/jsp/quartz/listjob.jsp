@@ -18,7 +18,7 @@
 		.btn{border: 0;border-radius:4px;background-color: #428bca;color: #fff;padding: 3px 5px;cursor: pointer;}
 	</style>
   </head>
-  
+
   <body style="background: beige;">
   <div style="text-align: center;">
   	<span>欢迎${name }登录！</span>
@@ -111,7 +111,7 @@
   <div style="width: 90%;margin: 0 auto;text-align: center;margin-top: 25px;">
   	<button type="button" onclick="add();" class="btn">新增任务</button>
   </div>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
   <script type="text/javascript">
   	var url = "${pageContext.request.contextPath}";
   	function add(){

@@ -36,7 +36,7 @@
 
   <servlet-mapping>
     <servlet-name>default</servlet-name>
-    <url-pattern>/assets/*</url-pattern>
+    <!--<url-pattern>/assets/*</url-pattern>-->
     <url-pattern>/s/*</url-pattern>
     <url-pattern>*.xml</url-pattern>
     <url-pattern>*.txt</url-pattern>

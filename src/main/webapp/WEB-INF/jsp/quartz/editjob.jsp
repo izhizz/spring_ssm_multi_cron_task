@@ -12,7 +12,7 @@
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
   </head>
-  
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
  <body style="background: beige; margin: 300px 600px 200px;" >
   <form action="${pageContext.request.contextPath }/quartz/edit" method="post">
 	<input type="hidden" name="oldjobName" value="${pd.jobName}" >
