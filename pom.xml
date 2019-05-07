@@ -111,6 +111,13 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.jolbox/bonecp -->
+        <dependency>
+            <groupId>com.jolbox</groupId>
+            <artifactId>bonecp</artifactId>
+            <version>0.8.0.RELEASE</version>
+        </dependency>
+
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -218,6 +225,8 @@
             <artifactId>spring-context-support</artifactId>
             <version>4.2.4.RELEASE</version>
         </dependency>
+
+
     </dependencies>
 
     <build>
