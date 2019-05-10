@@ -79,6 +79,22 @@ public class QuartzController {
 		return "quartz/message";
 	}
 
+	@RequestMapping(value="/add/job",method= RequestMethod.POST)
+	public String addJob(HttpServletRequest request, HttpServletResponse response) throws SchedulerException, ClassNotFoundException {
+		String jobName = request.getParameter("jobName");
+		String jobGroupName = request.getParameter("jobGroupName");
+		String triggerName = request.getParameter("triggerName");
+		String triggerGroupName = request.getParameter("triggerGroupName");
+		String clazz = request.getParameter("clazz");
+		Class cls = Class.forName(clazz);
+		String cron = request.getParameter("cron");
+		quartzService.addJob(jobName, jobGroupName, cls,"execute","",triggerName, triggerGroupName, 1000, cron);
+		request.setAttribute("message", "添加任务成功!");
+		request.setAttribute("opName", "添加任务!");
+		return "quartz/message";
+	}
+
+
 	/**
 	 * 跳转到编辑
 	 * 

@@ -34,10 +34,9 @@
     <param-value>classpath:application-context.xml</param-value>
   </context-param>
 
+  <!--spring不拦截静态文件-->
   <servlet-mapping>
     <servlet-name>default</servlet-name>
-    <url-pattern>/js/*</url-pattern>
-    <url-pattern>/s/*</url-pattern>
     <url-pattern>*.xml</url-pattern>
     <url-pattern>*.txt</url-pattern>
     <url-pattern>*.css</url-pattern>

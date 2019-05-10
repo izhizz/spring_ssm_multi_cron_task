@@ -1,7 +1,7 @@
 package com.demo.service;
 
 public interface QuartzService {
-
+	public int addJob(String jobName, String jobGroupName, Class<?> job, String method, String description, String triggerName, String triggerGroupName,int seconds, String cronExpress);
 	/**
 	 * addJob(方法描述：添加一个定时任务) <br />
 	 * (方法适用条件描述： – 可选)

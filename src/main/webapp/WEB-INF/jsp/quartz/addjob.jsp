@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-      <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
+
     <title>新增任务</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -15,7 +15,7 @@
   </head>
   
   <body style="background: beige; margin: 300px 600px 200px;" >
-  <form action="${pageContext.request.contextPath }/quartz/add" method="post">
+  <form action="${pageContext.request.contextPath }/quartz/add/job" method="post">
   <span>新增Trigger</span>
 	<hr/>
    <table id="table_report" class="table table-striped table-bordered table-hover">
@@ -48,7 +48,8 @@
   </form>
   </body>
 </html>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+
 <script>
 $(document).ready(function() {
 	$(".cancel").click(function(){

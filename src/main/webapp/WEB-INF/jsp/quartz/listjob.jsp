@@ -112,6 +112,7 @@
   	<button type="button" onclick="add();" class="btn">新增任务</button>
   </div>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+
   <script type="text/javascript">
   	var url = "${pageContext.request.contextPath}";
   	function add(){

@@ -2,8 +2,14 @@ package com.demo.service.Impl;
 
 import com.demo.service.QuartzService;
 import org.quartz.*;
+import org.quartz.core.jmx.JobDetailSupport;
+import org.quartz.impl.triggers.CronTriggerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Service
@@ -11,10 +17,55 @@ public class QuartzServiceImpl implements QuartzService {
 	
 	@Autowired
 	private Scheduler quartzScheduler;
-	
+
 	@Override
-	public void addJob(String jobName, String jobGroupName, String triggerName,
-			String triggerGroupName, Class cls, String cron) {
+	public int addJob(String jobName, String jobGroupName, Class<?> job, String method, String description, String triggerName,String triggerGroupName, int seconds, String cronExpress) {
+		try {
+			// 判断任务是否存在
+			JobKey jobKey = JobKey.jobKey(jobName, jobGroupName);
+			if (quartzScheduler.checkExists(jobKey)) {
+				return 1;// 任务已经存在
+			}
+			// 创建一个JobDetail实例
+			Map<String, Object> JobDetailMap = new HashMap<>();
+			// 设置任务名字
+			JobDetailMap.put("name", jobName);
+			// 设置任务组
+			JobDetailMap.put("group", jobGroupName);
+			// 设置描述
+//			JobDetailMap.put("description", description);
+			// 指定执行类
+			JobDetailMap.put("jobClass", Class.forName("com.demo.service.Impl.JobDetailBean").getCanonicalName());
+
+			Map<String, String> jobDataMap = new HashMap<>();
+			jobDataMap.put("targetObject", job.getCanonicalName());
+			jobDataMap.put("targetMethod", method);
+			jobDataMap.put("jobName", jobName);
+			JobDetailMap.put("jobDataMap", jobDataMap);
+
+			JobDetail jobDetail = JobDetailSupport.newJobDetail(JobDetailMap);
+
+			// 触发器
+			CronTriggerImpl trigger = new CronTriggerImpl();
+			trigger.setName(triggerName);
+			trigger.setGroup(triggerGroupName);
+			trigger.setCronExpression(cronExpress);
+
+			trigger.setStartTime(new Date(new Date().getTime() + 1000 * seconds));
+
+			// 通过SchedulerFactory获取一个调度器实例
+			quartzScheduler.scheduleJob(jobDetail, trigger);//  注册并进行调度
+			quartzScheduler.start();// ⑤调度启动
+			return 0;// 添加成功
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 2;// 操作异常
+		}
+	}
+
+
+	@Override
+	public void addJob(String jobName, String jobGroupName, String triggerName, String triggerGroupName, Class cls, String cron) {
 		try {
 			// 获取调度器
 			Scheduler sched = quartzScheduler;
@@ -36,7 +87,7 @@ public class QuartzServiceImpl implements QuartzService {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	/**
 	 * 修改定时器任务信息
 	 */
