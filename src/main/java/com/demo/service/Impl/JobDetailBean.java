@@ -8,6 +8,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.scheduling.quartz.QuartzJobBean;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -26,8 +27,8 @@ public class JobDetailBean extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
         try {
-            System.out.println();
             Class<?> aClass = Class.forName(targetObject);
+            aClass.getMethods();
             Object bean = ctx.getBean(aClass);
             Method m = bean.getClass().getMethod(this.targetMethod);
             m.invoke(bean);

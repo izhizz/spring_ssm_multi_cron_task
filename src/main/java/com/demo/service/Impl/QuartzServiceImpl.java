@@ -51,7 +51,7 @@ public class QuartzServiceImpl implements QuartzService {
 			trigger.setGroup(triggerGroupName);
 			trigger.setCronExpression(cronExpress);
 
-			trigger.setStartTime(new Date(new Date().getTime() + 1000 * seconds));
+			trigger.setStartTime(new Date(new Date().getTime() ));
 
 			// 通过SchedulerFactory获取一个调度器实例
 			quartzScheduler.scheduleJob(jobDetail, trigger);//  注册并进行调度

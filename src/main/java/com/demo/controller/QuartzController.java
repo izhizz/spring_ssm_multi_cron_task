@@ -248,8 +248,8 @@ public class QuartzController {
 					JobDataMap map = quartzScheduler.getJobDetail(jobKey)
 							.getJobDataMap();
 					if (null != map&&map.size() != 0) {
-						jobInfo.setCount(Integer.parseInt((String) map
-								.get("count")));
+//						jobInfo.setCount(Integer.parseInt((String) map
+//								.get("count")));
 						jobInfo.setJobDataMap(map);
 					} else {
 						jobInfo.setJobDataMap(new JobDataMap());
